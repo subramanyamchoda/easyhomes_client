@@ -21,7 +21,7 @@ const Navbar = ({ user, userType, onLogout }) => {
 
   const handleLogout = () => {
     onLogout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
