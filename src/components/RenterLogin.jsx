@@ -38,7 +38,7 @@ const RenterLogin = ({ setUser, setUserType }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/renter/login",
+        "https://easyhomes.onrender.com/renter/login",
         credentials,
         { headers: { "Content-Type": "application/json" } }
       );
