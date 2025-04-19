@@ -21,7 +21,7 @@ const Navbar = ({ user, userType, onLogout }) => {
   const handleLogout = () => {
     onLogout();               // clear user data (from context/localStorage etc.)
     setMenuOpen(false);       // close mobile menu
-    navigate("/", { replace: true }); // go to home
+    navigate("/home", { replace: true }); // go to home
   };
 
   return (
