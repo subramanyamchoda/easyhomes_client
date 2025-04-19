@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "tailwindcss";
+body {
+  background-color: #020515;
+  /* background-color: #3F4F44; */
+
+  /* background-color: rgb(6, 6, 6); */
+}
+.blue {
+  background-color: #020515;
+}
+.text1 {
+  font-stretch: expanded;
+  font-variant: small-caps;
+  font-weight: 500;
+}
+.radius {
+  border-radius: 10px;
+}
+.image {
+  border-radius: 10px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+/* Add to your tailwind config or a global stylesheet */

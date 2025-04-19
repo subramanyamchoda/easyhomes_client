@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "tailwindcss";
+
+.text1 {
+    
+    font-stretch: expanded;
+    font-variant: small-caps;
+    font-weight: 500;
+}
+.radius{
+    border-radius: 10px;
+
+}
+.image{
+    border-radius: 10px;
+}
+body{
+    background-color: #020515;
+
+
+}
