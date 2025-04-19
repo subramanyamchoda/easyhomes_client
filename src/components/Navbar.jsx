@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink as RouterNavLink, useNavigate } from "react-router-dom";
 
 const Navbar = ({ user, userType, onLogout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Dynamically update navLinks based on the user login state
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
-    ...(user && userType !== "renter" ? [{ to: "/search", label: "Search" }] : []), // Only show Search for non-renters and logged-in users
+    ...(user && userType !== "renter" ? [{ to: "/search", label: "Search" }] : []),
     ...(userType === "user" ? [{ to: "/dashboard", label: "Dashboard" }] : []),
     ...(userType === "renter"
       ? [
@@ -20,8 +19,9 @@ const Navbar = ({ user, userType, onLogout }) => {
   ];
 
   const handleLogout = () => {
-    onLogout();
-    navigate("/");
+    onLogout();               // clear user data (from context/localStorage etc.)
+    setMenuOpen(false);       // close mobile menu
+    navigate("/", { replace: true }); // go to home
   };
 
   return (
@@ -31,9 +31,7 @@ const Navbar = ({ user, userType, onLogout }) => {
           {/* Logo */}
           <RouterNavLink to="/" className="flex items-center space-x-3">
             <img src="/home.png" className="h-10 rounded-xl" alt="Logo" />
-            <span className="text-2xl font-semibold text-white">
-              Easy Homes
-            </span>
+            <span className="text-2xl font-semibold text-white">Easy Homes</span>
           </RouterNavLink>
 
           {/* Desktop Menu */}
@@ -81,10 +79,7 @@ const Navbar = ({ user, userType, onLogout }) => {
 
             {user ? (
               <button
-                onClick={() => {
-                  handleLogout();
-                  setMenuOpen(false);
-                }}
+                onClick={handleLogout}
                 className="bg-red-500 text-white w-11/12 py-2 rounded-lg hover:bg-red-600 transition"
               >
                 Logout
