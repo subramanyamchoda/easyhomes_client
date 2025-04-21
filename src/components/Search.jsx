@@ -29,12 +29,14 @@ const Search = () => {
   useEffect(() => {
     const fetchHomes = async () => {
       try {
-        const response = await axios.get("https://easyhomes.onrender.com/homes/get");
+        const response = await axios.get("https://easyhomes.onrender.com//homes/get");
         const homesData = response.data.map((home) => ({
           ...home,
           renter: home.renter || null,
         }));
         setHomes(homesData);
+        console.log(response.data);
+        
         setFilteredHomes(homesData);
 
         // Set unique options
@@ -49,7 +51,7 @@ const Search = () => {
     };
          const fetchCommits = async () => {
             try {
-              const response = await axios.get("https://easyhomes.onrender.com/commit/getall");
+              const response = await axios.get("https://easyhomes.onrender.com//commit/getall");
               setCommits(response.data);
               console.log(response.data);
             } catch (err) {
@@ -200,21 +202,22 @@ const Search = () => {
             <p className="text-green-400 font-semibold text-sm mb-4">
               💰 Rent: ₹{home.rentprice}
             </p>
-
-            {home.images.length > 0 && (
+ {home.images.length > 0 && (
               <div className="w-full h-[250px] mb-4 overflow-hidden rounded-md">
                 <Carousel showThumbs={false} infiniteLoop autoPlay>
-                  {home.images.map((image, index) => (
-                    <div key={index}>
-                      <img
-                        src={`https://easyhomes.onrender.com/uploads/${image}`}
-                        alt={`Home ${index}`}
-                        className="w-full h-full object-cover rounded-md"
-                      />
-                    </div>
-                  ))}
+                {home.images?.map((img, i) => (
+  img?.base64 && img?.contentType ? (
+    <img
+      key={i}
+      src={`data:${img.contentType};base64,${img.base64}`}
+      alt="Home Image"
+    />
+  ) : null
+))}
+
                 </Carousel>
               </div>
+              
             )}
 
             {home.renter && (
