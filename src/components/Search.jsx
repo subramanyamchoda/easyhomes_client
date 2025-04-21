@@ -29,7 +29,7 @@ const Search = () => {
   useEffect(() => {
     const fetchHomes = async () => {
       try {
-        const response = await axios.get("https://easyhomes.onrender.com//homes/get");
+        const response = await axios.get("https://easyhomes.onrender.com/homes/get");
         const homesData = response.data.map((home) => ({
           ...home,
           renter: home.renter || null,
@@ -51,7 +51,7 @@ const Search = () => {
     };
          const fetchCommits = async () => {
             try {
-              const response = await axios.get("https://easyhomes.onrender.com//commit/getall");
+              const response = await axios.get("https://easyhomes.onrender.com/commit/getall");
               setCommits(response.data);
               console.log(response.data);
             } catch (err) {
