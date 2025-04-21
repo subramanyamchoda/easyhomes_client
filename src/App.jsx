@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes ,Link} from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
@@ -18,6 +18,7 @@ import Rdashboard from "./components/Rdashboard";
 import CommitList from "./components/CommitList";
 import UserHomes from "./components/UserHomes";
 
+
 const App = () => {
   const [user, setUser] = useState(() => {
     try {
@@ -27,6 +28,7 @@ const App = () => {
       return null;
     }
   });
+  const navigate = useNavigate();
 
   const [userType, setUserType] = useState(localStorage.getItem("userType"));
 
@@ -49,7 +51,7 @@ const App = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userType");
     alert("Logged out successfully!");
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   return (
