@@ -132,27 +132,32 @@ const UserHomes = () => {
                     Click on an image to view it in full size.
                   </p>
                   <Carousel
-                showThumbs={false}
-                infiniteLoop
-                autoPlay
-                emulateTouch
-                showStatus={false}
-                className="rounded-xl overflow-hidden"
-              >
-                {home.images.map((image, idx) => (
-                  <div
-                    key={idx}
-                    className="cursor-pointer"
-                    onClick={() => handleImageClick(image)}
-                  >
-                    <img
-                      src={`https://easyhomes.onrender.com/uploads/${image}`}
-                      alt={`Home ${idx}`}
-                      className="h-56 object-cover w-full rounded-lg"
-                    />
-                  </div>
-                ))}
-              </Carousel>
+  showThumbs={false}
+  infiniteLoop
+  autoPlay
+  emulateTouch
+  showStatus={false}
+  className="rounded-xl overflow-hidden"
+>
+  {home.images.map((img, i) => {
+    if (img.base64 && img.contentType) {
+      const base64String = `data:${img.contentType};base64,${img.base64}`;
+      return (
+        <img
+          key={i}
+          src={base64String}
+          alt={`Home Image ${i + 1}`}
+          onClick={() => handleImageClick(base64String)}
+          className="w-full h-64 object-cover rounded-lg shadow-sm cursor-pointer"
+        />
+      );
+    } else {
+      return <p key={i}>Image not available</p>;
+    }
+  })}
+</Carousel>
+
+
             </div>
           </motion.div>
         ))}
