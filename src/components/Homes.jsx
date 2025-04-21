@@ -103,17 +103,21 @@ const Homes = () => {
                 <p className="text-md font-medium text-green-700 mb-3">Rent Price: ₹{home.rentprice}</p>
 
                 {home.images && home.images.length > 0 && (
-                  <div className="grid grid-cols-3 gap-2">
-                    {home.images.map((img, index) => (
-                      <img
-                        key={index}
-                        src={`https://easyhomes.onrender.com/uploads/${img}`}
-                        alt={`Home ${index + 1}`}
-                        className="w-full h-24 object-cover rounded-md"
-                      />
-                    ))}
-                  </div>
-                )}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+    {home.images.map((img, i) =>
+      img.data && img.contentType ? (
+        <img
+          key={i}
+          src={`data:${img.contentType};base64,${img.data}`}
+          alt={`Home Image ${i + 1}`}
+          className="w-full h-64 object-cover rounded-lg shadow-sm"
+        />
+      ) : (
+        <p key={i}>Image not available</p>
+      )
+    )}
+  </div>
+)}
               </div>
 
               <button
