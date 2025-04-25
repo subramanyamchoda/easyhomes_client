@@ -57,9 +57,9 @@ const Home = () => {
         />
       </div>
 
-      <section className="my-8 w-full max-w-5xl">
-  <AdUnit slot="7484094536" />
-</section>
+        <section className="my-8 w-full max-w-5xl">
+        <AdUnit slot="7484094536" />
+      </section>
 
       
       {/* Title */}
