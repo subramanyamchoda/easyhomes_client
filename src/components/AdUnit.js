@@ -1,19 +1,30 @@
-import { useEffect, useRef } from 'react';
+// src/components/AdUnit.js
+import React, { useEffect, useRef } from 'react';
 
-export default function AdUnit({ slot, format = 'auto', responsive = true }) {
+export default function AdUnit({
+  slot,
+  format = 'auto',
+  responsive = true,
+  client = 'ca-pub-1417536970473743'
+}) {
   const adRef = useRef();
 
   useEffect(() => {
-    adRef.current.innerHTML = '';                  // clear any old ad
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    // clear any old ad markup
+    if (adRef.current) adRef.current.innerHTML = '';
+    // trigger a new ad request
+    ;(window.adsbygoogle = window.adsbygoogle || []).push({});
   }, [slot]);
 
   return (
-  <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1417536970473743"
-     data-ad-slot="7484094536"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
+    <ins
+      className="adsbygoogle"
+      ref={adRef}
+      style={{ display: 'block' }}
+      data-ad-client={client}
+      data-ad-slot={slot}
+      data-ad-format={format}
+      data-full-width-responsive={responsive.toString()}
+    />
   );
 }
