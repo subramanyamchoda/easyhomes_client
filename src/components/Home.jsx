@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import TextPressure from '../blocks/TextPressure';
+import AdUnit from '../components/AdUnit';
+
 
 const Home = () => {
   useEffect(() => {
@@ -54,6 +56,10 @@ const Home = () => {
           transition={{ duration: 2, repeat: Infinity }}
         />
       </div>
+
+      <section className="ad-section">
+        <AdUnit slot="7484094536" />   {/* your Ad Unit ID */}
+      </section>
       
       {/* Title */}
       <motion.div 
