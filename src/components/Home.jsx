@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import TextPressure from '../blocks/TextPressure';
-import AdUnit from './AdUnit';
+
 
 
 const Home = () => {
@@ -57,9 +57,7 @@ const Home = () => {
         />
       </div>
 
-        <section className="my-8 w-full max-w-5xl">
-        <AdUnit slot="7484094536" />
-      </section>
+        
 
       
       {/* Title */}
