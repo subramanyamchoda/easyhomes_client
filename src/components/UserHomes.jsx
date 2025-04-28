@@ -43,13 +43,26 @@ const UserHomes = () => {
     setSelectedImage("");
   };
 
-  const openLocationOnGoogleMaps = (pluscode) => {
-    if (!pluscode) {
-      alert("Plus Code is missing.");
-      return;
+  const openLocationOnGoogleMaps = (home) => {
+    if (home.latitude && home.longitude) {
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${home.latitude},${home.longitude}`;
+      window.open(mapsUrl, "_blank");
+    } else if (home.pluscode) {
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(home.pluscode)}`;
+      window.open(mapsUrl, "_blank");
+    } else {
+      alert("Location data is missing.");
     }
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pluscode)}`;
-    window.open(mapsUrl, "_blank");
+  };
+
+  // 🟢 Function to open WhatsApp
+  const openWhatsApp = (mobileNumber) => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const message = encodeURIComponent("Hello, I am interested in your home listing!");
+    const whatsappURL = isMobile
+      ? `whatsapp://send?phone=91${mobileNumber}&text=${message}`
+      : `https://web.whatsapp.com/send?phone=91${mobileNumber}&text=${message}`;
+    window.open(whatsappURL, "_blank");
   };
 
   if (error) {
@@ -114,7 +127,7 @@ const UserHomes = () => {
 
             <div className="flex flex-wrap gap-4 justify-center mt-6">
               <button
-                onClick={() => openLocationOnGoogleMaps(home.pluscode)}
+                onClick={() => openLocationOnGoogleMaps(home)}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-full transition-transform hover:scale-105 text-sm"
               >
                 View on Map
@@ -125,39 +138,43 @@ const UserHomes = () => {
               >
                 Call Now
               </a>
+              <button
+                onClick={() => openWhatsApp(home.mobile)}
+                className="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-full transition-transform hover:scale-105 text-sm"
+              >
+                WhatsApp
+              </button>
             </div>
 
             <div className="mt-6">
-                <p className="text-lg text-gray-500 text-center mb-2 animate-bounce">
-                    Click on an image to view it in full size.
-                  </p>
-                  <Carousel
-  showThumbs={false}
-  infiniteLoop
-  autoPlay
-  emulateTouch
-  showStatus={false}
-  className="rounded-xl overflow-hidden"
->
-  {home.images.map((img, i) => {
-    if (img.base64 && img.contentType) {
-      const base64String = `data:${img.contentType};base64,${img.base64}`;
-      return (
-        <img
-          key={i}
-          src={base64String}
-          alt={`Home Image ${i + 1}`}
-          onClick={() => handleImageClick(base64String)}
-          className="w-full h-64 object-cover rounded-lg shadow-sm cursor-pointer"
-        />
-      );
-    } else {
-      return <p key={i}>Image not available</p>;
-    }
-  })}
-</Carousel>
-
-
+              <p className="text-lg text-gray-500 text-center mb-2 animate-bounce">
+                Click on an image to view it in full size.
+              </p>
+              <Carousel
+                showThumbs={false}
+                infiniteLoop
+                autoPlay
+                emulateTouch
+                showStatus={false}
+                className="rounded-xl overflow-hidden"
+              >
+                {home.images.map((img, i) => {
+                  if (img.base64 && img.contentType) {
+                    const base64String = `data:${img.contentType};base64,${img.base64}`;
+                    return (
+                      <img
+                        key={i}
+                        src={base64String}
+                        alt={`Home Image ${i + 1}`}
+                        onClick={() => handleImageClick(base64String)}
+                        className="w-full h-64 object-cover rounded-lg shadow-sm cursor-pointer"
+                      />
+                    );
+                  } else {
+                    return <p key={i}>Image not available</p>;
+                  }
+                })}
+              </Carousel>
             </div>
           </motion.div>
         ))}
@@ -179,7 +196,7 @@ const UserHomes = () => {
               &times;
             </button>
             <img
-              src={`https://easyhomes.onrender.com/uploads/${selectedImage}`}
+              src={selectedImage}
               alt="Preview"
               className="w-full h-[70vh] object-contain rounded-md"
             />
