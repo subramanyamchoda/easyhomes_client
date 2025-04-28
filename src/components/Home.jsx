@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import TextPressure from '../blocks/TextPressure';
 
-
-
 const Home = () => {
   useEffect(() => {
     if ("serviceWorker" in navigator && "PushManager" in window) {
@@ -56,10 +54,8 @@ const Home = () => {
           transition={{ duration: 2, repeat: Infinity }}
         />
       </div>
+     
 
-        
-
-      
       {/* Title */}
       <motion.div 
         className="text-center my-7 w-full px-4"
