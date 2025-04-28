@@ -55,13 +55,10 @@ const UserHomes = () => {
     }
   };
 
-  // 🟢 Function to open WhatsApp
   const openWhatsApp = (mobileNumber) => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const message = encodeURIComponent("Hello, I am interested in your home listing!");
-    const whatsappURL = isMobile
-      ? `whatsapp://send?phone=91${mobileNumber}&text=${message}`
-      : `https://web.whatsapp.com/send?phone=91${mobileNumber}&text=${message}`;
+    const message = "Hello, I saw your property on EasyHomes, I'm interested!";
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/91${mobileNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, "_blank");
   };
 
@@ -132,12 +129,14 @@ const UserHomes = () => {
               >
                 View on Map
               </button>
+
               <a
                 href={`tel:+91${home.mobile}`}
                 className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full transition-transform hover:scale-105 text-sm"
               >
                 Call Now
               </a>
+
               <button
                 onClick={() => openWhatsApp(home.mobile)}
                 className="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-full transition-transform hover:scale-105 text-sm"
