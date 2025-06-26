@@ -44,13 +44,13 @@ This is the **frontend client** for **EasyHomes**, a smart rental platform that 
   <img src="https://subramanyamchoda.vercel.app/easyhomes1.png" width="400"/>
   <img src="https://subramanyamchoda.vercel.app/easyhomes2.png" width="400"/>
   <img src="https://subramanyamchoda.vercel.app/easyhomes3.png" width="400"/>
-  <img src="https://subramanyamchoda.vercel.app/easyhomes4.png" width="500"/>
-  <img src="https://subramanyamchoda.vercel.app/easyhomes5.png" width="500"/>
-  <img src="https://subramanyamchoda.vercel.app/easyhomes6.png" width="500"/>
-  <img src="https://subramanyamchoda.vercel.app/easyhomes7.png" width="500"/>
-  <img src="https://subramanyamchoda.vercel.app/easyhomes8.png" width="500"/>
-  <img src="https://subramanyamchoda.vercel.app/easyhomes9.png" width="500"/>
-  <img src="https://subramanyamchoda.vercel.app/easyhomes10.png" width="500"/>
+  <img src="https://subramanyamchoda.vercel.app/easyhomes4.png" width="400"/>
+  <img src="https://subramanyamchoda.vercel.app/easyhomes5.png" width="400"/>
+  <img src="https://subramanyamchoda.vercel.app/easyhomes6.png" width="400"/>
+  <img src="https://subramanyamchoda.vercel.app/easyhomes7.png" width="400"/>
+  <img src="https://subramanyamchoda.vercel.app/easyhomes8.png" width="400"/>
+  <img src="https://subramanyamchoda.vercel.app/easyhomes9.png" width="400"/>
+  <img src="https://subramanyamchoda.vercel.app/easyhomes10.png" width="400"/>
 </p>
 ## 📁 Folder Structure
 
